@@ -1,7 +1,7 @@
 *.class
 *.log
 
-.idea/
-dist/
-target/
-project/plugins/project/
+.idea/*
+dist/*
+target/*
+project/plugins/project/*
