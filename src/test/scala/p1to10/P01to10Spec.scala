@@ -35,7 +35,6 @@ class P01to10Spec extends FlatSpec with Matchers {
 
   "P07" should "Flatten a nested list structure." in {
     val list = List(List(1, 1), 2, List(3, List(5, 8)))
-
     P01to10.flatten(list) shouldEqual  List(1, 1, 2, 3, 5, 8)
   }
 

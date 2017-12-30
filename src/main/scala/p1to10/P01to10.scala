@@ -1,19 +1,50 @@
 package p1to10
 
+import scala.annotation.tailrec
+
 object P01to10 {
   def encode[A](list: List[A]):List[(Int, A)] = ???
 
   def pack[A](list: List[A]): List[List[A]] = ???
 
-  def compress[A](list: List[A]): List[A] = ???
+  def compress[A](list: List[A]): List[A] = {
+    val init : List[A] = Nil
+    list.foldLeft(init){case(acc, elem) =>
+      acc.headOption match {
+        case Some(a) if a == elem => acc
+        case _ => elem :: acc
+      }
+    }.reverse
+  }
 
-  def flatten[A, B](list: List[A]): List[B] = ???
+  def flatten(list: List[Any]): List[Any] = {
+    _flatten(list).reverse
+  }
 
-  def isPalindrome[A](list: List[A]): Boolean = ???
+  //TODO tailrec
+  private def _flatten(list: List[Any]): List[Any] = {
+    val init : List[Any] = Nil
+    list.foldLeft(init){ case (acc, elem) =>
+      elem match {
+        case a @ List(_*) =>  _flatten(a) ::: acc
+        case b => b :: acc
+      }
+    }
+  }
 
-  def reverse[A](list: List[A]): List[A] = ???
 
-  def length[A](list: List[A]): Int = ???
+  def isPalindrome[A](list: List[A]): Boolean = {
+    val reverseList = list.reverse
+    reverseList == list
+  }
+
+  def reverse[A](list: List[A]): List[A] = {
+    list.reverse
+  }
+
+  def length[A](list: List[A]): Int = {
+    list.size
+  }
 
 
   def last[A](list: List[A]): A ={
@@ -39,7 +70,7 @@ object P01to10 {
   def nth[A](i: Int, list: List[A]): A = {
     //TODO これだとマイナス対応ができていない
     (i, list) match {
-      case (0, a :: Nil) => a
+      case (0, a :: _) => a
       case (n, _ :: subList) => nth(n - 1, subList)
       case (_, Nil) => throw new NoSuchElementException
     }
