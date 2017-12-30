@@ -24,7 +24,7 @@ class P11to20Spec extends FlatSpec with Matchers {
   }
 
   "P15" should ".Duplicate the elements of a list a given number of times." in {
-    val list = List(1, 1, 2, 3, 5, 8)
+    val list = List('a, 'b, 'c, 'c, 'd)
     P11to20.duplicateN(3, list) shouldEqual List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
   }
 
