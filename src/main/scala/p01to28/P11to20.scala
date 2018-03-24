@@ -1,4 +1,4 @@
-package p01to20
+package p01to28
 
 object P11to20 {
   def removeAt[A](i: Int, list: List[A]): (List[A], A)  = {
